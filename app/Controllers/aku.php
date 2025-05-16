@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class aku extends BaseController
+class Aku extends BaseController
 {
     public function matkul(): string
     {
@@ -19,5 +19,17 @@ class aku extends BaseController
     public function film(): string
     {
         return view('faiz/film');
+    }
+    public function beranda()
+    {
+        return view('layout/template', ['halaman' => view('halaman/beranda')]);
+    }
+    public function daftargame()
+    {
+        return view('layout/template', ['halaman' => view('halaman/daftargame')]);
+    }
+    public function caratopup()
+    {
+        return view('layout/template', ['halaman' => view('halaman/caratopup')]);
     }
 }
