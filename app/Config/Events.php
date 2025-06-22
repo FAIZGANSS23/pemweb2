@@ -3,6 +3,7 @@
 namespace Config;
 
 use CodeIgniter\Events\Events;
+<<<<<<< HEAD
 
 Events::on('pre_controller', function () {
     $router = service('router');
@@ -15,6 +16,8 @@ Events::on('pre_controller', function () {
     }
 });
 
+=======
+>>>>>>> 34d2bf95fabe85c0705d02fa6afc23647b0c385e
 use CodeIgniter\Exceptions\FrameworkException;
 use CodeIgniter\HotReloader\HotReloader;
 
@@ -45,7 +48,11 @@ Events::on('pre_system', static function () {
             ob_end_flush();
         }
 
+<<<<<<< HEAD
         ob_start(static fn($buffer) => $buffer);
+=======
+        ob_start(static fn ($buffer) => $buffer);
+>>>>>>> 34d2bf95fabe85c0705d02fa6afc23647b0c385e
     }
 
     /*

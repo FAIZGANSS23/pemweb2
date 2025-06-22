@@ -46,10 +46,21 @@ abstract class BaseController extends Controller
     /**
      * @return void
      */
+<<<<<<< HEAD
     protected $session;
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
         $this->session = \Config\Services::session();
+=======
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+    {
+        // Do Not Edit This Line
+        parent::initController($request, $response, $logger);
+
+        // Preload any models, libraries, etc, here.
+
+        // E.g.: $this->session = \Config\Services::session();
+>>>>>>> 34d2bf95fabe85c0705d02fa6afc23647b0c385e
     }
 }
