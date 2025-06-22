@@ -3,6 +3,18 @@
 namespace Config;
 
 use CodeIgniter\Events\Events;
+
+Events::on('pre_controller', function () {
+    $router = service('router');
+    $controller = $router->controllerName();
+
+    // Jika controller adalah Books, gunakan template buku
+    if (strpos($controller, 'Books') !== false) {
+        $view = service('renderer');
+        $view->setVar('template', 'layout/templatebuku');
+    }
+});
+
 use CodeIgniter\Exceptions\FrameworkException;
 use CodeIgniter\HotReloader\HotReloader;
 
@@ -33,7 +45,7 @@ Events::on('pre_system', static function () {
             ob_end_flush();
         }
 
-        ob_start(static fn ($buffer) => $buffer);
+        ob_start(static fn($buffer) => $buffer);
     }
 
     /*

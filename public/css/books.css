@@ -1,0 +1,70 @@
+/* BOOK-SPECIFIC STYLES */
+.book-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.book-table th {
+    background: linear-gradient(45deg, #00ffff, #0080ff);
+    color: #000;
+    padding: 12px;
+    text-align: left;
+}
+
+.book-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.book-cover {
+    max-height: 150px;
+    border-radius: 5px;
+}
+
+/* Detail Page */
+.book-detail-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.book-cover-large {
+    max-width: 300px;
+    border: 2px solid #00ffff;
+}
+@media (max-width: 768px) {
+    .book-detail-container { flex-direction: column; }
+    .book-cover-large { max-width: 100%; }
+}
+/* Warna Theme Manga */
+:root {
+    --primary-color: #e63946; /* Merah manga */
+    --secondary-color: #f1faee;
+    --dark-color: #1d3557;
+}
+
+.book-card {
+    border-left: 5px solid var(--primary-color);
+}
+
+.book-card:hover {
+    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
+}
+
+/* Animasi Cover Manga */
+.book-cover {
+    transition: transform 0.5s;
+    height: 300px; /* Lebih tinggi untuk komik */
+}
+
+.book-card:hover .book-cover {
+    transform: scale(1.05);
+}

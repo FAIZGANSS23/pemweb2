@@ -11,3 +11,14 @@ $routes->get('/proyek', 'Aku::film');
 $routes->get('/beranda', 'Aku::beranda');
 $routes->get('/daftar-game', 'Aku::daftargame');
 $routes->get('/cara-topup', 'Aku::caratopup');
+
+// Routes untuk Books CRUD
+$routes->group('books', function ($routes) {
+    $routes->get('/', 'Books::index');
+    $routes->get('create', 'Books::create');
+    $routes->post('save', 'Books::save'); // Pastikan ini POST
+    $routes->get('edit/(:segment)', 'Books::edit/$1');
+    $routes->post('update/(:num)', 'Books::update/$1');
+    $routes->delete('(:num)', 'Books::delete/$1');
+    $routes->get('(:segment)', 'Books::detail/$1'); // Letakkan paling akhir
+});
