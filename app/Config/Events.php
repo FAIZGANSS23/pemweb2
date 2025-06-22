@@ -3,7 +3,15 @@
 namespace Config;
 
 use CodeIgniter\Events\Events;
-<<<<<<< HEAD
+use CodeIgniter\Exceptions\FrameworkException;
+use CodeIgniter\HotReloader\HotReloader;
+use Config\Services;
+
+/*
+ * --------------------------------------------------------------------
+ * Event Custom: Template Buku
+ * --------------------------------------------------------------------
+ */
 
 Events::on('pre_controller', function () {
     $router = service('router');
@@ -16,28 +24,11 @@ Events::on('pre_controller', function () {
     }
 });
 
-=======
->>>>>>> 34d2bf95fabe85c0705d02fa6afc23647b0c385e
-use CodeIgniter\Exceptions\FrameworkException;
-use CodeIgniter\HotReloader\HotReloader;
-
 /*
  * --------------------------------------------------------------------
- * Application Events
+ * Application Events (Default dari CodeIgniter)
  * --------------------------------------------------------------------
- * Events allow you to tap into the execution of the program without
- * modifying or extending core files. This file provides a central
- * location to define your events, though they can always be added
- * at run-time, also, if needed.
- *
- * You create code that can execute by subscribing to events with
- * the 'on()' method. This accepts any form of callable, including
- * Closures, that will be executed when the event is triggered.
- *
- * Example:
- *      Events::on('create', [$myInstance, 'myMethod']);
  */
-
 Events::on('pre_system', static function () {
     if (ENVIRONMENT !== 'testing') {
         if (ini_get('zlib.output_compression')) {
@@ -48,11 +39,7 @@ Events::on('pre_system', static function () {
             ob_end_flush();
         }
 
-<<<<<<< HEAD
         ob_start(static fn($buffer) => $buffer);
-=======
-        ob_start(static fn ($buffer) => $buffer);
->>>>>>> 34d2bf95fabe85c0705d02fa6afc23647b0c385e
     }
 
     /*
@@ -64,6 +51,7 @@ Events::on('pre_system', static function () {
     if (CI_DEBUG && ! is_cli()) {
         Events::on('DBQuery', 'CodeIgniter\Debug\Toolbar\Collectors\Database::collect');
         Services::toolbar()->respond();
+
         // Hot Reload route - for framework use on the hot reloader.
         if (ENVIRONMENT === 'development') {
             Services::routes()->get('__hot-reload', static function () {
