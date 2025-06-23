@@ -1,44 +1,44 @@
-<?= $this->extend('layout/template'); ?>
-<?= $this->section('content'); ?>
+<?php echo $this->extend('layout/templatebuku'); ?>
 
-<h2><?= esc($title); ?></h2>
+<?php echo $this->section('content'); ?>
+<div class="container mt-4">
+    <h4 class="mb-3">Form Tambah Data Buku</h4>
+    <form action="/books/save" method="post" enctype="multipart/form-data">
+        <?= csrf_field(); ?>
 
-<form action="/books/save" method="post" enctype="multipart/form-data">
-    <?= csrf_field(); ?>
-
-    <div class="form-group">
-        <label for="judul">Judul</label>
-        <input type="text" name="judul" id="judul" value="<?= old('judul'); ?>" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>">
-        <div class="invalid-feedback">
-            <?= $validation->getError('judul'); ?>
+        <div class="mb-3">
+            <label for="judul" class="form-label">Judul</label>
+            <input type="text" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>" id="judul" name="judul" value="<?= old('judul'); ?>">
+            <div class="invalid-feedback">
+                <?= $validation->getError('judul'); ?>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="penulis">Penulis</label>
-        <input type="text" name="penulis" class="form-control <?= ($validation->hasError('penulis')) ? 'is-invalid' : ''; ?>" value="<?= old('penulis'); ?>">
-        <div class="invalid-feedback">
-            <?= $validation->getError('penulis'); ?>
+        <div class="mb-3">
+            <label for="penulis" class="form-label">Penulis</label>
+            <input type="text" class="form-control <?= ($validation->hasError('penulis')) ? 'is-invalid' : ''; ?>" id="penulis" name="penulis" value="<?= old('penulis'); ?>">
+            <div class="invalid-feedback">
+                <?= $validation->getError('penulis'); ?>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="penerbit">Penerbit</label>
-        <input type="text" name="penerbit" class="form-control <?= ($validation->hasError('penerbit')) ? 'is-invalid' : ''; ?>" value="<?= old('penerbit'); ?>">
-        <div class="invalid-feedback">
-            <?= $validation->getError('penerbit'); ?>
+        <div class="mb-3">
+            <label for="penerbit" class="form-label">Penerbit</label>
+            <input type="text" class="form-control <?= ($validation->hasError('penerbit')) ? 'is-invalid' : ''; ?>" id="penerbit" name="penerbit" value="<?= old('penerbit'); ?>">
+            <div class="invalid-feedback">
+                <?= $validation->getError('penerbit'); ?>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="sampul">Sampul</label>
-        <input type="file" name="sampul" class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>">
-        <div class="invalid-feedback">
-            <?= $validation->getError('sampul'); ?>
+        <div class="mb-3">
+            <label for="sampul" class="form-label">Sampul</label>
+            <input class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>" type="file" id="sampul" name="sampul">
+            <div class="invalid-feedback">
+                <?= $validation->getError('sampul'); ?>
+            </div>
         </div>
-    </div>
 
-    <button type="submit" class="btn btn-success mt-2">Tambah Data</button>
-</form>
-
-<?= $this->endSection(); ?>
+        <button type="submit" class="btn btn-primary">Tambah Data</button>
+    </form>
+</div>
+<?php echo $this->endSection(); ?>

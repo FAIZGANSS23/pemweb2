@@ -42,7 +42,7 @@ class Books extends BaseController
     {
         $data = [
             'title' => 'Form Tambah Data Buku',
-            'validation' => \Config\Services::validation()
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation()
         ];
 
         return view('books/create', $data);
@@ -50,6 +50,8 @@ class Books extends BaseController
 
     public function save()
     {
+        $validation = \Config\Services::validation();
+
         if (!$this->validate([
             'judul' => [
                 'rules' => 'required|is_unique[books.judul]',
@@ -75,14 +77,15 @@ class Books extends BaseController
                 ]
             ]
         ])) {
-            return redirect()->to('/books/create')->withInput();
+            return redirect()->to('/books/create')->withInput()->with('validation', $validation);
         }
 
         $fileSampul = $this->request->getFile('sampul');
-        if ($fileSampul->getError() == 4) {
-            $namaSampul = 'default.jpg';
-        } else {
-            $namaSampul = $fileSampul->getRandomName();
+        $namaSampul = ($fileSampul->getError() == 4)
+            ? 'default.jpg'
+            : $fileSampul->getRandomName();
+
+        if ($fileSampul->getError() != 4) {
             $fileSampul->move('assets/img/books', $namaSampul);
         }
 
@@ -115,7 +118,7 @@ class Books extends BaseController
     {
         $data = [
             'title' => 'Form Ubah Data Buku',
-            'validation' => \Config\Services::validation(),
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'book' => $this->bookModel->getBook($slug)
         ];
 
@@ -126,6 +129,8 @@ class Books extends BaseController
     {
         $bookLama = $this->bookModel->getBook($this->request->getVar('slug'));
         $rule_judul = ($bookLama['judul'] == $this->request->getVar('judul')) ? 'required' : 'required|is_unique[books.judul]';
+
+        $validation = \Config\Services::validation();
 
         if (!$this->validate([
             'judul' => [
@@ -152,7 +157,7 @@ class Books extends BaseController
                 ]
             ]
         ])) {
-            return redirect()->to('/books/edit/' . $this->request->getVar('slug'))->withInput();
+            return redirect()->to('/books/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
         }
 
         $fileSampul = $this->request->getFile('sampul');

@@ -13,7 +13,7 @@
     <!-- Navbar Khusus Buku -->
     <nav>
         <div class="logo" style="color: #00ffff; font-size: 1.8rem;">
-            Azka<span style="color: #ff40a6;">Books</span>
+            Azka<span style="color:rgb(58, 15, 248);">Books</span>
         </div>
         <div class="nav-links">
             <a href="/books">Daftar Buku</a>s
